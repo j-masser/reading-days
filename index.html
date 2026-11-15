@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Reading Days</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand">
+        <p class="eyebrow">Reading log</p>
+        <h1 id="month-title">November 2026</h1>
+      </div>
+      <nav class="month-nav" aria-label="Change month">
+        <button type="button" id="prev" class="icon-btn" aria-label="Previous month">&#8249;</button>
+        <button type="button" id="today" class="text-btn">Today</button>
+        <button type="button" id="next" class="icon-btn" aria-label="Next month">&#8250;</button>
+      </nav>
+    </header>
+
+    <section class="stats" aria-label="Reading stats">
+      <div class="stat"><span class="stat-num" id="stat-streak">0</span><span class="stat-label">Day streak</span></div>
+      <div class="stat"><span class="stat-num" id="stat-longest">0</span><span class="stat-label">Longest streak</span></div>
+      <div class="stat"><span class="stat-num" id="stat-month-days">0</span><span class="stat-label" id="stat-month-days-label">Days read this month</span></div>
+      <div class="stat"><span class="stat-num" id="stat-year-books">0</span><span class="stat-label" id="stat-year-label">Books in 2026</span></div>
+    </section>
+
+    <section class="calendar" aria-label="Calendar">
+      <div class="weekdays" aria-hidden="true">
+        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="shelf-section">
+      <div class="section-head">
+        <h2 id="shelf-title">On the shelf this month</h2>
+        <span class="muted" id="shelf-count"></span>
+      </div>
+      <div class="shelf" id="shelf"></div>
+    </section>
+
+    <footer class="foot">
+      <button type="button" class="text-btn" id="export">Export backup</button>
+      <label class="text-btn file-btn" for="import">Import backup</label>
+      <input type="file" id="import" accept="application/json" hidden>
+      <span class="muted small">Saved in this browser. Covers and authors from Open Library.</span>
+    </footer>
+  </main>
+
+  <dialog id="day-dialog" aria-labelledby="day-title">
+    <form method="dialog" class="dlg-head">
+      <div>
+        <p class="eyebrow stamp" id="day-stamp"></p>
+        <h2 id="day-title"></h2>
+      </div>
+      <button class="icon-btn" value="close" aria-label="Close">&times;</button>
+    </form>
+
+    <div class="dlg-body">
+      <ul class="day-books" id="day-books"></ul>
+
+      <label for="search" class="field-label">Add a book</label>
+      <input id="search" type="search" placeholder="Search by title or author" autocomplete="off">
+      <p class="muted small" id="search-status" aria-live="polite"></p>
+      <ul class="results" id="results"></ul>
+
+      <div id="recent-wrap">
+        <p class="field-label">Recently reading</p>
+        <div class="chips" id="recent"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
